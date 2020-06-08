@@ -14,7 +14,7 @@ Working with SQL
 
 Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same data we used during the guided project.
 
-* [ ] ***pgAdmin data refresh***
+* [x] ***pgAdmin data refresh***
 
 * Select the northwind database created during the guided project.
 
@@ -29,7 +29,11 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
 
 ### Answer the following data queries. Keep track of the SQL you write by pasting it into this document under its appropriate header below in the provided SQL code block. You will be submitting that through the regular fork, change, pull process
 
-* [ ] ***find all customers that live in London. Returns 6 records***
+* [x] ***find all customers that live in London. Returns 6 records***
+
+SELECT contact_name
+FROM customers
+WHERE UPPER(city) = 'LONDON'
 
   <details><summary>hint</summary>
 
@@ -40,7 +44,11 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
 
 ```
 
-* [ ] ***find all customers with postal code 1010. Returns 3 customers***
+* [x] ***find all customers with postal code 1010. Returns 3 customers***
+
+SELECT contact_name
+FROM customers
+WHERE postal_code = '1010'
 
   <details><summary>hint</summary>
 
@@ -51,7 +59,11 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
 
 ```
 
-* [ ] ***find the phone number for the supplier with the id 11. Should be (010) 9984510***
+* [x] ***find the phone number for the supplier with the id 11. Should be (010) 9984510***
+
+SELECT phone
+FROM suppliers
+WHERE supplier_id = '11'
 
   <details><summary>hint</summary>
 
@@ -62,7 +74,11 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
 
 ```
 
-* [ ] ***list orders descending by the order date. The order with date 1998-05-06 should be at the top***
+* [x] ***list orders descending by the order date. The order with date 1998-05-06 should be at the top***
+
+SELECT *
+FROM orders
+ORDER BY order_date DESC
 
   <details><summary>hint</summary>
 
@@ -73,7 +89,11 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
 
 ```
 
-* [ ] ***find all suppliers who have names longer than 20 characters. Returns 11 records***
+* [x] ***find all suppliers who have names longer than 20 characters. Returns 11 records***
+
+SELECT *
+FROM suppliers
+WHERE LENGTH(company_name) > 20
 
   <details><summary>hint</summary>
 
@@ -85,7 +105,11 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
 
 ```
 
-* [ ] ***find all customers that include the word 'MARKET' in the contact title. Should return 19 records***
+* [x] ***find all customers that include the word 'MARKET' in the contact title. Should return 19 records***
+
+SELECT *
+FROM customers
+WHERE UPPER(contact_title) LIKE '%MARKET%'
 
   <details><summary>hint</summary>
 
@@ -98,7 +122,11 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
 
 ```
 
-* [ ] ***add a customer record for***
+* [x] ***add a customer record for***
+
+INSERT INTO customers(customer_id, company_name, contact_name, address, city, postal_code, country)
+SELECT 'SHIRE', 'The Shire', 'Bilbo Bagins', '1 Hobbit-Hole', 'Bag End', '111', 'Middle Earth'
+
 * customer id is 'SHIRE'
 * company name is 'The Shire'
 * contact name is 'Bilbo Baggins'
@@ -115,7 +143,11 @@ Reimport the Northwind database into PostgreSQL using pgAdmin. This is the same 
 
 ```
 
-* [ ] ***update _Bilbo Baggins_ record so that the postal code changes to _"11122"_***
+* [x] ***update _Bilbo Baggins_ record so that the postal code changes to _"11122"_***
+
+UPDATE customers 
+SET postal_code = '11122'
+WHERE company_name = 'The Shire'
 
   <details><summary>hint</summary>
 
