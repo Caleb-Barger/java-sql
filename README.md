@@ -158,7 +158,14 @@ WHERE company_name = 'The Shire'
 
 ```
 
-* [ ] ***list orders grouped and ordered by customer company name showing the number of orders per customer company name. _Rattlesnake Canyon Grocery_ should have 18 orders***
+* [x] ***list orders grouped and ordered by customer company name showing the number of orders per customer company name. _Rattlesnake Canyon Grocery_ should have 18 orders***
+
+SELECT c.company_name, COUNT(*) as orders
+FROM customers c JOIN orders o
+ON c.customer_id = o.customer_id
+GROUP BY c.company_name 
+ORDER BY c.company_name ASC
+
 
   <details><summary>hint</summary>
 
@@ -170,7 +177,13 @@ WHERE company_name = 'The Shire'
 
 ```
 
-* [ ] ***list customers by contact name and the number of orders per contact name. Sort the list by the number of orders in descending order. _Jose Pavarotti_ should be at the top with 31 orders followed by _Roland Mendal_ with 30 orders. Last should be _Francisco Chang_ with 1 order***
+* [x] ***list customers by contact name and the number of orders per contact name. Sort the list by the number of orders in descending order. _Jose Pavarotti_ should be at the top with 31 orders followed by _Roland Mendal_ with 30 orders. Last should be _Francisco Chang_ with 1 order***
+
+SELECT c.contact_name, count(*) as order_per_contact_name
+FROM customers c JOIN orders o
+ON c.customer_id =  o.customer_id
+GROUP BY c.contact_name
+ORDER BY order_per_contact_name DESC
 
   <details><summary>hint</summary>
 
